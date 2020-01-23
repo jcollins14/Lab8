@@ -74,6 +74,13 @@ namespace Lab8
                     }
                 }
                 Console.WriteLine("Would you like to look up another class member?");
+                input = Console.ReadLine();
+                input = input.Trim().ToLower();
+                if (input == "no")
+                {
+                    Exit();
+                }
+
             }
            
         }
@@ -95,7 +102,6 @@ namespace Lab8
         {
             string answer;
             answer = table[key].ToString();
-            Console.WriteLine(answer);
             return answer;
         }
 
