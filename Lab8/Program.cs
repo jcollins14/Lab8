@@ -6,10 +6,11 @@ namespace Lab8
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int student;
             string input;
+            bool loop = true;
 
             List<string> students = new List<string>();
             students.Add("Tommy Waalkes");
@@ -37,43 +38,45 @@ namespace Lab8
 
             Console.WriteLine("Welcome to the Grand Circus After Hours C# Database.");
 
-            student = SelectStudent();
-            Console.WriteLine("You have selected " + students[student] + ". What would you like to know about " + students[student] +"?. (Enter: Hometown or Favorite Food).");
-
-            input = Console.ReadLine();
-            input = input.Trim().ToLower();
-
-            if (input == "hometown")
+            while (loop == true)
             {
-                string home = LookupTable(town, students[student]);
-                Console.WriteLine(students[student] + " is from " + home + ".");
-                Console.WriteLine("Would you like to know more about " + students[student] + "?");
+                student = SelectStudent();
+                Console.WriteLine("You have selected " + students[student] + ". What would you like to know about " + students[student] + "?. (Enter: Hometown or Favorite Food).");
+
                 input = Console.ReadLine();
                 input = input.Trim().ToLower();
-                if (input == "yes")
-                {
-                    string meal = LookupTable(food, students[student]);
-                    Console.WriteLine(students[student] + "'s favorite food is " + meal + ".");
-                }
-            }
 
-            if (input == "favorite food")
-            {
-                string meal = LookupTable(food, students[student]);
-                Console.WriteLine(students[student] + "'s favorite food is " + meal + ".");
-                Console.WriteLine("Would you like to know more about " + students[student] + "?");
-                input = Console.ReadLine();
-                input = input.Trim().ToLower();
-                if (input == "yes")
+                if (input == "hometown")
                 {
                     string home = LookupTable(town, students[student]);
                     Console.WriteLine(students[student] + " is from " + home + ".");
+                    Console.WriteLine("Would you like to know more about " + students[student] + "?");
+                    input = Console.ReadLine();
+                    input = input.Trim().ToLower();
+                    if (input == "yes")
+                    {
+                        string meal = LookupTable(food, students[student]);
+                        Console.WriteLine(students[student] + "'s favorite food is " + meal + ".");
+                    }
                 }
+
+                if (input == "favorite food")
+                {
+                    string meal = LookupTable(food, students[student]);
+                    Console.WriteLine(students[student] + "'s favorite food is " + meal + ".");
+                    Console.WriteLine("Would you like to know more about " + students[student] + "?");
+                    input = Console.ReadLine();
+                    input = input.Trim().ToLower();
+                    if (input == "yes")
+                    {
+                        string home = LookupTable(town, students[student]);
+                        Console.WriteLine(students[student] + " is from " + home + ".");
+                    }
+                }
+                Console.WriteLine("Would you like to look up another class member?");
             }
-
-            Console.WriteLine("Thank you for using the Grand Circus Database System. Goodbye");
+           
         }
-
         public static int SelectStudent()
         {
             int number = 0;
@@ -94,6 +97,12 @@ namespace Lab8
             answer = table[key].ToString();
             Console.WriteLine(answer);
             return answer;
+        }
+
+        public static void Exit()
+        {
+            Console.WriteLine("Thank you for using the Grand Circus Database System. Goodbye");
+            Environment.Exit(1);
         }
     }
 }
