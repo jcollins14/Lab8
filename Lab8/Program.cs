@@ -44,7 +44,7 @@ namespace Lab8
             {
                 student = SelectStudent();
 
-                if (student == "error")
+                while (student == "error")
                 {
                     student = SelectStudent();
                 }
@@ -127,19 +127,16 @@ namespace Lab8
             }
             catch (FormatException)
             {
-                Console.WriteLine("Please input a valid number between 1-6");
-                SelectStudent();
+                Console.WriteLine("Invalid Input. Please only enter an integer between 1 and " + students.Count);
             }
             catch (ArgumentOutOfRangeException)
             {
-                Console.WriteLine("Invalid Selection. Please select a student again.");
-                SelectStudent();
+                Console.WriteLine("Incorrect Integer. Please only enter an integer between 1 and " + students.Count);
             }
-            //catch (IndexOutOfRangeException)
-            //{
-            //    Console.WriteLine("Invalid Selection. Please select a student again.");
-            //    SelectStudent();
-            //}
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Please only enter an integer between 1 and " + students.Count);
+            }
             return output;
         }
 
