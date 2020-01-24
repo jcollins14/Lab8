@@ -19,7 +19,7 @@ namespace Lab8
             students.Add("Austin Powel");
             students.Add("Dylan Rule");
             students.Add("Andrew Waltman");
-            
+
             Hashtable town = new Hashtable();
             town.Add("Jake Collins", "Corona, CA");
             town.Add("Andrew Waltman", "Grand Rapids, MI");
@@ -46,13 +46,28 @@ namespace Lab8
                 input = Console.ReadLine();
                 input = input.Trim().ToLower();
 
+                while (input != "favorite food" && input != "hometown")
+                {
+                    Console.WriteLine("I'm sorry, that data is not on file. Please try again. (Enter: Hometown or Favorite Food).");
+                    input = Console.ReadLine();
+                    input = input.Trim().ToLower();
+                }
+
                 if (input == "hometown")
                 {
                     string home = LookupTable(town, students[student]);
                     Console.WriteLine(students[student] + " is from " + home + ".");
-                    Console.WriteLine("Would you like to know more about " + students[student] + "?");
+                    Console.WriteLine("Would you like to know more about " + students[student] + "? (Enter: Yes or No).");
                     input = Console.ReadLine();
                     input = input.Trim().ToLower();
+
+                    while (input != "yes" && input != "no")
+                    {
+                        Console.WriteLine("Invalid Input, please try again.");
+                        input = Console.ReadLine();
+                        input = input.Trim().ToLower();
+                    }
+
                     if (input == "yes")
                     {
                         string meal = LookupTable(food, students[student]);
@@ -60,37 +75,48 @@ namespace Lab8
                     }
                 }
 
-                if (input == "favorite food")
+                else if (input == "favorite food")
                 {
                     string meal = LookupTable(food, students[student]);
                     Console.WriteLine(students[student] + "'s favorite food is " + meal + ".");
-                    Console.WriteLine("Would you like to know more about " + students[student] + "?");
+                    Console.WriteLine("Would you like to know more about " + students[student] + "? (Enter: Yes or No).");
                     input = Console.ReadLine();
                     input = input.Trim().ToLower();
+
+                    while (input != "yes" && input != "no")
+                    {
+                        Console.WriteLine("Invalid Input, please try again.");
+                        input = Console.ReadLine();
+                        input = input.Trim().ToLower();
+                    }
+
                     if (input == "yes")
                     {
                         string home = LookupTable(town, students[student]);
                         Console.WriteLine(students[student] + " is from " + home + ".");
                     }
                 }
-                Console.WriteLine("Would you like to look up another class member?");
-                input = Console.ReadLine();
-                input = input.Trim().ToLower();
-                if (input == "no")
+                loop = TryAgain();
+                if (loop == false)
                 {
                     Exit();
                 }
-
             }
-           
+
         }
         public static int SelectStudent()
         {
             int number = 0;
-           
+
             while (number < 1 || number > 6)
             {
-                Console.WriteLine("Which class member would you like to know about? Please select 1-6.");
+                Console.WriteLine("Which class member would you like to know about? (Enter: 1-6).");
+                Console.WriteLine("1: Tommy Waalkes");
+                Console.WriteLine("2: Albert Ngoudjou");
+                Console.WriteLine("3: Jake Collins");
+                Console.WriteLine("4: Austin Powel");
+                Console.WriteLine("5: Dylan Rule");
+                Console.WriteLine("6: Andrew Waltman");
                 string response = Console.ReadLine();
                 number = int.Parse(response);
             }
@@ -105,6 +131,29 @@ namespace Lab8
             return answer;
         }
 
+        public static bool TryAgain()
+        {
+            string input;
+            Console.WriteLine("Would you like to look up another class member? (Enter: Yes or No).");
+            input = Console.ReadLine();
+            input = input.Trim().ToLower();
+
+            while (input != "yes" && input != "no")
+            {
+                Console.WriteLine("Invalid Input, please try again.");
+                input = Console.ReadLine();
+                input = input.Trim().ToLower();
+            }
+
+            if (input == "yes" )
+                {
+                return true;
+                }
+            else
+            {
+                return false;
+            }
+        }
         public static void Exit()
         {
             Console.WriteLine("Thank you for using the Grand Circus Database System. Goodbye");
