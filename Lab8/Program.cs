@@ -124,7 +124,7 @@ namespace Lab8
             string output = "error";
 
             //String concatenation shows max number of strings in students[] so it can scale
-            Console.WriteLine("Which class member would you like to know about? (Enter: 1-" + students.Count + ".");
+            Console.WriteLine("Which class member would you like to know about? (Enter: 1-" + students.Count + ").");
             //displays all members within students[]
             for (int i = 0; i < students.Count; i++)
             {
@@ -189,7 +189,7 @@ namespace Lab8
         //Takes user input and automatically trims whitespace and converts to lowercase
         public static string UserInput()
         {
-            string userInput = "";
+            string userInput;
             userInput = Console.ReadLine();
             userInput = userInput.Trim().ToLower();
             return userInput;
